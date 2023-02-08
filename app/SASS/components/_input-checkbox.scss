@@ -1,0 +1,33 @@
+@use "../base/functions" as func;
+@use "../abstracts/variables" as v;
+@use "../abstracts/colors" as c;
+
+input[type="checkbox"] {
+  position: relative;
+  -webkit-appearance: none;
+  appearance: none;
+  width: func.rem(52.25);
+  height: func.rem(25);
+  border: func.rem(1) solid c.$nav-item-border;
+  border-radius: 50%;
+  background: transparent;
+  outline: none;
+  cursor: pointer;
+  transition: v.$main-transition;
+
+  &::before {
+    position: absolute;
+    content: "";
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    border-radius: 50%;
+    scale: 0.6;
+    transition: v.$main-transition;
+  }
+}
+
+input[type="checkbox"]:checked::before {
+  background: c.$moderate-cyan;
+}

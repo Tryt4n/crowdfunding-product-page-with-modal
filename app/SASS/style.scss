@@ -1,0 +1,241 @@
+@forward "./base/index";
+@forward "./layout/index";
+@forward "./components/index";
+@use "./base/functions" as func;
+@use "./abstracts/colors" as c;
+@use "./abstracts/variables" as v;
+@use "./abstracts/mixins" as *;
+
+body {
+  width: 100%;
+  height: 100vh;
+  background: whitesmoke;
+}
+
+.riser-section {
+  margin: 0 auto;
+  translate: 0 -5rem;
+  z-index: 1;
+  @include flex(column);
+  gap: 1rem;
+  @media (width >= 768px) {
+    width: func.rem(700);
+  }
+
+  & .riser-container {
+    background: white;
+    color: c.$dark-gray;
+    padding: v.$element-spacing;
+    border-radius: 0.5rem;
+  }
+}
+
+.riser-header {
+  position: relative;
+  text-align: center;
+
+  .mastercraft-logo {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    translate: -50% -50%;
+  }
+
+  &__title {
+    color: c.$black;
+    margin: 1rem 0;
+  }
+
+  &__btn-wrap {
+    @include flex(row, space-between, center);
+    margin-top: v.$element-spacing;
+    height: fit-content;
+
+    .btn--bookmark {
+      position: relative;
+      width: v.$bookmark-icon-height;
+      height: v.$bookmark-icon-height;
+      z-index: 2;
+      @media (width >= 768px) {
+        translate: calc((func.rem(117) - (v.$bookmark-icon-height / 2)) * -1);
+      }
+
+      & img {
+        width: 100%;
+        height: 100%;
+      }
+
+      &::after {
+        position: absolute;
+        content: "Bookmark";
+        top: 0;
+        right: 0;
+        translate: calc(100% - (v.$bookmark-icon-height / 2));
+        height: 100%;
+        @include flex(row, center, center);
+        background: c.$light-dark;
+        padding: 1rem;
+        padding-left: calc(1rem + (v.$bookmark-icon-height / 2));
+        border-top-right-radius: 9999px;
+        border-bottom-right-radius: 9999px;
+        z-index: -1;
+        font-weight: bold;
+        color: c.$dark-gray;
+        @media (width < 768px) {
+          display: none;
+        }
+      }
+
+      &.active {
+        &::after {
+          color: c.$dark-cyan;
+        }
+      }
+    }
+  }
+}
+
+.riser-goal {
+  @include flex(column);
+  gap: v.$element-spacing;
+
+  &__text-wrap {
+    @include flex();
+    gap: v.$element-spacing;
+  }
+
+  .goal-item {
+    @media (width >= 768px) {
+      padding-right: v.$element-spacing;
+      border-right: func.rem(1) solid c.$nav-item-border;
+      &:last-child {
+        border-right: none;
+        padding-right: 0;
+      }
+    }
+
+    & strong {
+      color: c.$black;
+      font-size: 2rem;
+    }
+    & p {
+      margin-top: 0.5rem;
+    }
+  }
+
+  &__progress-bar {
+    position: relative;
+    width: 100%;
+    height: func.rem(10);
+    border-radius: 9999px;
+    overflow: hidden;
+
+    &--complete {
+      height: 100%;
+      width: var(--progress-bar-width);
+      background: c.$moderate-cyan;
+      border-radius: 9999px;
+    }
+
+    &--incomplete {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+      width: 100%;
+      background: c.$light-dark;
+    }
+  }
+}
+
+.riser-about {
+  @include flex(column);
+  gap: v.$element-spacing;
+
+  &__header {
+    color: c.$black;
+    font-size: func.rem(20);
+  }
+
+  &__plan {
+    padding: v.$element-spacing;
+    border: func.rem(1) solid c.$light-dark;
+    border-radius: 0.5rem;
+    @include flex(column);
+    gap: v.$element-spacing;
+  }
+
+  & .header-wrap,
+  & .select-wrap {
+    @media (width >= 768px) {
+      @include flex(row, space-between, center);
+    }
+  }
+
+  & .header-wrap {
+    &__title {
+      color: c.$black;
+      font-size: func.rem(18);
+    }
+
+    &__pledge {
+      color: c.$moderate-cyan;
+      font-weight: 500;
+    }
+  }
+
+  & .select-wrap {
+    &__quantity {
+      font-size: 0.75rem;
+      @include flex(row, center, center);
+      line-height: 100%;
+      & em {
+        font-weight: bold;
+        color: c.$black;
+        font-size: 1.5rem;
+        padding-right: 0.5rem;
+      }
+    }
+  }
+
+  & .disabled {
+    opacity: 0.5;
+  }
+}
+
+@media (width < 768px) {
+  .riser-section {
+    width: 100vw;
+    padding: clamp(1rem, 5vw, 2rem);
+  }
+
+  .riser-goal {
+    &__text-wrap {
+      margin: 0 auto;
+      @include flex(column, center, center);
+      text-align: center;
+    }
+
+    & .goal-item {
+      padding-bottom: v.$element-spacing;
+      border-bottom: func.rem(1) solid c.$nav-item-border;
+      &:last-child {
+        border-bottom: none;
+        padding-bottom: 0;
+      }
+    }
+  }
+
+  .riser-about {
+    & .header-wrap {
+      &__pledge {
+        margin-top: 0.5rem;
+      }
+    }
+
+    & .select-wrap {
+      @include flex(column, flex-start, flex-start);
+      gap: v.$element-spacing;
+    }
+  }
+}

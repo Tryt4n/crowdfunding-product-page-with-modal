@@ -1,0 +1,47 @@
+@use "../base/functions" as func;
+@use "../abstracts/variables" as v;
+@use "../abstracts/colors" as c;
+
+button {
+  outline: none;
+  background: transparent;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  font-family: inherit;
+  font-weight: inherit;
+}
+
+.btn {
+  transition: v.$main-transition;
+  &:is(:hover, :focus) {
+    opacity: 0.8;
+  }
+
+  &--primary {
+    color: white;
+    background: c.$moderate-cyan;
+    padding: 0.75rem 2rem;
+    border-radius: 9999px;
+    font-weight: 500;
+
+    &:is(:hover, :focus) {
+      background: c.$dark-cyan;
+      opacity: 1;
+    }
+  }
+
+  &--short {
+    padding: 0.75rem 1.25rem;
+  }
+
+  &--disabled {
+    background: c.$dark-gray;
+    width: func.rem(150.08);
+    cursor: auto;
+    &:is(:hover, :focus) {
+      opacity: 1;
+      background: c.$dark-gray;
+    }
+  }
+}

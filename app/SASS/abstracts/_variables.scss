@@ -1,0 +1,9 @@
+@use "../base/functions" as func;
+
+$main-transition: 300ms ease-in-out;
+$navbar-padding-y: 2.5rem;
+$logo-height: 20px;
+$navbar-height: calc($logo-height + ($navbar-padding-y * 2));
+
+$bookmark-icon-height: func.rem(42);
+$element-spacing: 2rem;

@@ -1,0 +1,32 @@
+@use "../base/functions" as func;
+@use "../abstracts/variables" as v;
+@use "../abstracts/colors" as c;
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
+
+/* Firefox */
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+input[type="number"] {
+  position: relative;
+  outline: none;
+  font-family: inherit;
+  font-weight: bold;
+  font-size: func.rem(13);
+  width: 6rem;
+  padding: calc(0.75rem - (func.rem(1) / 2)) calc(2rem - (func.rem(1) / 2));
+  border: func.rem(1) solid c.$nav-item-border;
+  border-radius: 9999px;
+  text-align: center;
+  transition: v.$main-transition;
+
+  &:is(:hover, :focus) {
+    border-color: c.$moderate-cyan;
+  }
+}
