@@ -14,6 +14,9 @@ input[type="checkbox"] {
   outline: none;
   cursor: pointer;
   transition: v.$main-transition;
+  @media (width < 768px) {
+    width: func.rem(25);
+  }
 
   &::before {
     position: absolute;

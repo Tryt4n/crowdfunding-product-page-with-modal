@@ -9,6 +9,7 @@ export default function handleProgressBar() {
       value.parentElement.parentElement.parentElement.classList.add("disabled");
       btnDisabled.classList.add("btn--disabled");
       btnDisabled.setAttribute("disabled", "");
+      btnDisabled.textContent = "Out of stock";
     }
   });
   let completeOfProgressBar = parseFloat(progressValues[0].dataset.progressValue);

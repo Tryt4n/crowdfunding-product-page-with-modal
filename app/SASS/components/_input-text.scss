@@ -25,8 +25,20 @@ input[type="number"] {
   border-radius: 9999px;
   text-align: center;
   transition: v.$main-transition;
+  caret-color: c.$moderate-cyan;
 
   &:is(:hover, :focus) {
     border-color: c.$moderate-cyan;
   }
 }
+
+input[type="number"]::placeholder {
+  opacity: 0.5;
+}
+
+// &__input:is(:focus, :hover) {
+//   border-color: c.$moderate-cyan;
+// }
+// &__input:is(:disabled:focus, :disabled:hover) {
+//   border-color: inherit;
+// }

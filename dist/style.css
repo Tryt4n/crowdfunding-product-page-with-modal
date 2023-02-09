@@ -101,6 +101,11 @@ input[type=checkbox] {
   cursor: pointer;
   transition: 300ms ease-in-out;
 }
+@media (width < 768px) {
+  input[type=checkbox] {
+    width: 1.5625rem;
+  }
+}
 input[type=checkbox]::before {
   position: absolute;
   content: "";
@@ -140,13 +145,51 @@ input[type=number] {
   border-radius: 9999px;
   text-align: center;
   transition: 300ms ease-in-out;
+  caret-color: hsl(176deg, 50%, 47%);
 }
 input[type=number]:is(:hover, :focus) {
   border-color: hsl(176deg, 50%, 47%);
 }
 
+input[type=number]::-moz-placeholder {
+  opacity: 0.5;
+}
+
+input[type=number]::placeholder {
+  opacity: 0.5;
+}
+
+html,
+.modal {
+  scrollbar-width: thin;
+  scrollbar-color: #777 transparent;
+  z-index: 100;
+}
+
+html::-webkit-scrollbar,
+.modal::-webkit-scrollbar {
+  width: 0.5vw;
+}
+
+html::-webkit-scrollbar-thumb,
+.modal::-webkit-scrollbar-thumb {
+  background-color: #777;
+  border-radius: 9999px;
+}
+
+html::-webkit-scrollbar-track,
+.modal::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+
+.modal,
+.modal::-webkit-scrollbar-thumb {
+  background-color: #999;
+}
+
 .modal {
   position: fixed;
+  overflow-y: scroll;
   inset: 0;
   width: 100%;
   height: 100vh;
@@ -154,7 +197,11 @@ input[type=number]:is(:hover, :focus) {
   display: flex;
   flex-direction: row;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
+  gap: 2rem;
+  padding: 2rem 0;
+  transition: 300ms ease-in-out;
+  animation: showModal 1000ms ease-in-out forwards;
 }
 .modal__container {
   height: -moz-fit-content;
@@ -183,6 +230,15 @@ input[type=number]:is(:hover, :focus) {
 .modal__subheader {
   margin: 2rem 0;
 }
+.modal .modal-pledge-container {
+  margin-top: 2rem;
+}
+.modal .modal-pledge-container:first-of-type {
+  margin-top: 0;
+}
+.modal .modal-pledge-container .disabled {
+  opacity: 0.5;
+}
 .modal .pledge {
   padding: 2rem;
   border: 0.0625rem solid hsla(0deg, 0%, 60%, 0.3);
@@ -192,6 +248,9 @@ input[type=number]:is(:hover, :focus) {
   justify-content: flex-start;
   align-items: flex-start;
   gap: 2rem;
+  transition: 300ms ease-in-out;
+  transform-origin: top;
+  margin-bottom: -6.5625rem;
 }
 .modal .pledge__wrapper {
   display: flex;
@@ -214,6 +273,9 @@ input[type=number]:is(:hover, :focus) {
 .modal .pledge__label:is(:focus, :hover) {
   color: hsl(176deg, 50%, 47%);
 }
+.modal .pledge .disabled .pledge__label:is(:focus, :hover) {
+  color: hsl(0deg, 0%, 0%);
+}
 .modal .pledge__accent-text {
   color: hsl(176deg, 50%, 47%);
   font-weight: 500;
@@ -234,6 +296,9 @@ input[type=number]:is(:hover, :focus) {
 .modal .pledge__input:is(:focus, :hover) {
   border-color: hsl(176deg, 50%, 47%);
 }
+.modal .pledge__input:is(:disabled:focus, :disabled:hover) {
+  border-color: inherit;
+}
 .modal .pledge__text {
   margin-top: 2rem;
 }
@@ -242,8 +307,9 @@ input[type=number]:is(:hover, :focus) {
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  display: none;
   padding: 2rem;
+  visibility: hidden;
+  animation: slideModalCollapse 300ms ease-in forwards;
 }
 .modal .pledge-expanded__wrapper {
   position: relative;
@@ -268,15 +334,164 @@ input[type=number]:is(:hover, :focus) {
 .modal .active {
   border: 0.125rem solid hsl(176deg, 50%, 47%);
   border-radius: 0.5rem;
+  transition: 300ms ease-in-out;
 }
 .modal .active .pledge {
-  border: 0;
+  border-bottom: 0.0625rem solid hsla(0deg, 0%, 60%, 0.3);
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+  margin-bottom: 0;
 }
 .modal .active .pledge-expanded {
   display: flex;
-  border-top: 0.0625rem solid hsla(0deg, 0%, 60%, 0.3);
+  animation: slideModalExpand 300ms ease-in forwards;
+  border-top: none;
+  border-bottom-left-radius: 0.5rem;
+  border-bottom-right-radius: 0.5rem;
+  opacity: 0;
+  visibility: visible;
 }
 
+.confirmation-container {
+  width: 31.25rem;
+  margin: auto 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  z-index: 102;
+}
+.confirmation-container svg {
+  margin-top: 1rem;
+}
+.confirmation-container__header {
+  color: hsl(0deg, 0%, 0%);
+  margin-top: 2rem;
+}
+.confirmation-container__text {
+  margin: 2rem 0;
+}
+
+.hide {
+  display: none;
+}
+
+@media (width < 768px) {
+  .modal {
+    z-index: 101;
+    padding: 1rem 0;
+  }
+  .modal__container {
+    width: 90%;
+    padding: 1rem;
+  }
+  .modal__container .close-btn {
+    translate: 0 150%;
+    scale: 1.25;
+  }
+  .modal__subheader {
+    margin: 1rem 0;
+  }
+  .modal .modal-pledge-container {
+    margin-top: 1rem;
+  }
+  .modal .pledge {
+    position: relative;
+    padding: 1rem;
+    gap: 1rem;
+  }
+  .modal .pledge__input {
+    position: absolute;
+    top: 0;
+    left: 0;
+    translate: 1rem 1rem;
+  }
+  .modal .pledge__wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+  }
+  .modal .pledge__wrapper__inner {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 0.25rem;
+    padding-left: 3rem;
+    translate: 0 -0.5rem;
+  }
+  .modal .pledge__wrapper .mobile {
+    translate: 0;
+  }
+  .modal .pledge__quantity {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    translate: 1rem -1rem;
+  }
+  .modal .pledge__text {
+    margin-top: 1rem 0;
+    margin-bottom: 2rem;
+  }
+  .modal .pledge__text.mobile {
+    margin-top: 2rem;
+    margin-bottom: 0;
+  }
+  .modal .pledge-expanded {
+    flex-direction: column;
+    padding: 1rem;
+  }
+  .modal .pledge-expanded label {
+    padding-bottom: 1rem;
+  }
+  .confirmation-container {
+    max-width: 31.25rem;
+  }
+}
+@keyframes slideModalExpand {
+  from {
+    translate: 0 -100%;
+    opacity: 0;
+  }
+  75% {
+    opacity: 0;
+  }
+  to {
+    translate: 0;
+    opacity: 1;
+  }
+}
+@keyframes slideModalCollapse {
+  from {
+    translate: 0;
+    opacity: 1;
+  }
+  25% {
+    opacity: 0;
+  }
+  to {
+    translate: 0 -100%;
+    opacity: 0;
+  }
+}
+@keyframes showModal {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes hideModal {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
 .scroll {
   overflow-y: hidden;
 }

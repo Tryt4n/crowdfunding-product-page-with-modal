@@ -1,0 +1,26 @@
+@use "../abstracts/colors" as c;
+
+html,
+.modal {
+  scrollbar-width: thin;
+  scrollbar-color: #777 transparent;
+  z-index: 100;
+}
+html::-webkit-scrollbar,
+.modal::-webkit-scrollbar {
+  width: 0.5vw;
+}
+html::-webkit-scrollbar-thumb,
+.modal::-webkit-scrollbar-thumb {
+  background-color: #777;
+  border-radius: 9999px;
+}
+html::-webkit-scrollbar-track,
+.modal::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+
+.modal,
+.modal::-webkit-scrollbar-thumb {
+  background-color: #999;
+}

@@ -70,7 +70,7 @@
           <h1 class="riser-header__title">Mastercraft Bamboo Monitor Riser</h1>
           <p>A beautiful & handcrafted monitor stand to reduce neck and eye strain.</p>
           <div class="riser-header__btn-wrap">
-            <button class="btn btn--primary">Back this project</button>
+            <button class="btn btn--primary" data-btn-open-modal>Back this project</button>
             <button class="btn btn--bookmark" aria-label="Mark as bookmarked" data-bookmark>
               <img src="./images/icon-bookmark.svg" alt="Bookmark icon" data-bookmark-icon />
             </button>
@@ -125,7 +125,9 @@
             </p>
             <div class="select-wrap">
               <span class="select-wrap__quantity"><em data-progress-value="101"></em>left</span>
-              <button class="btn btn--primary">Select Reward</button>
+              <button class="btn btn--primary" data-btn-open-modal="bamboo-stand">
+                Select Reward
+              </button>
             </div>
           </div>
 
@@ -140,7 +142,9 @@
             </p>
             <div class="select-wrap">
               <span class="select-wrap__quantity"><em data-progress-value="64"></em>left</span>
-              <button class="btn btn--primary">Select Reward</button>
+              <button class="btn btn--primary" data-btn-open-modal="black-edition-stand">
+                Select Reward
+              </button>
             </div>
           </div>
 
@@ -155,13 +159,15 @@
             </p>
             <div class="select-wrap">
               <span class="select-wrap__quantity"><em data-progress-value="0"></em>left</span>
-              <button class="btn btn--primary">Out of stock</button>
+              <button class="btn btn--primary" data-btn-open-modal="mahogany-special-edition">
+                Select Reward
+              </button>
             </div>
           </div>
         </div>
       </section>
 
-      <section class="modal" aria-hidden="true">
+      <section class="modal hide" aria-hidden="true" data-modal>
         <div class="modal__container">
           <button class="btn close-btn" data-modal-close-btn>
             <img src="./images/icon-close-modal.svg" alt="Close button" data-modal-button-img />
@@ -171,14 +177,61 @@
             Want to support us in bringing Mastercraft Bamboo Monitor Riser out in the world?
           </p>
 
-          <div class="" data-modal-active>
-            <div id="bamboo-container" class="pledge">
+          <form class="modal-pledge-container" action="#" data-modal-active>
+            <div class="pledge">
+              <input
+                class="pledge__input"
+                type="checkbox"
+                name="no-reward"
+                id="no-reward"
+                data-modal-pledge
+                required
+              />
+              <div>
+                <div class="pledge__wrapper">
+                  <div class="pledge__wrapper__inner mobile">
+                    <label class="pledge__label" for="no-reward">Pledge with no reward</label>
+                  </div>
+                </div>
+                <p class="pledge__text mobile">
+                  Choose to support us without a reward if you simply believe in our project. As a
+                  backer, you will be signed up to receive product updates via email.
+                </p>
+              </div>
+            </div>
+
+            <div
+              class="pledge-expanded"
+              aria-hidden="true"
+              aria-expanded="false"
+              aria-labelledby="no-reward"
+              data-modal-pledge-expanded
+            >
+              <label for="no-reward-pledge">Enter your pledge</label>
+              <div class="pledge-expanded__wrapper">
+                <input
+                  type="number"
+                  name="no-reward-pledge"
+                  id="no-reward-pledge"
+                  min="1"
+                  placeholder="0"
+                />
+                <button type="submit" class="btn btn--primary btn--short" data-btn-submit>
+                  Continue
+                </button>
+              </div>
+            </div>
+          </form>
+
+          <form class="modal-pledge-container" action="#" data-modal-active>
+            <div class="pledge">
               <input
                 class="pledge__input"
                 type="checkbox"
                 name="bamboo"
                 id="bamboo"
                 data-modal-pledge
+                required
               />
               <div>
                 <div class="pledge__wrapper">
@@ -199,16 +252,136 @@
               class="pledge-expanded"
               aria-hidden="true"
               aria-expanded="false"
-              aria-labelledby="bamboo-container"
+              aria-labelledby="bamboo"
               data-modal-pledge-expanded
             >
               <label for="bamboo-pledge">Enter your pledge</label>
               <div class="pledge-expanded__wrapper">
                 <input type="number" name="bamboo-pledge" id="bamboo-pledge" value="25" min="25" />
-                <button type="submit" class="btn btn--primary btn--short">Continue</button>
+                <button type="submit" class="btn btn--primary btn--short" data-btn-submit>
+                  Continue
+                </button>
               </div>
             </div>
-          </div>
+          </form>
+
+          <form class="modal-pledge-container" action="#" data-modal-active>
+            <div class="pledge">
+              <input
+                class="pledge__input"
+                type="checkbox"
+                name="black-edition"
+                id="black-edition"
+                data-modal-pledge
+                required
+              />
+              <div>
+                <div class="pledge__wrapper">
+                  <div class="pledge__wrapper__inner">
+                    <label class="pledge__label" for="black-edition">Black Edition Stand</label>
+                    <p class="pledge__accent-text">Pledge $75 or more</p>
+                  </div>
+                  <span class="pledge__quantity"><em data-progress-value="64"></em>left</span>
+                </div>
+                <p class="pledge__text">
+                  You get a Black Special Edition computer stand and a personal thank you. You’ll be
+                  added to our Backer member list. Shipping is included.
+                </p>
+              </div>
+            </div>
+
+            <div
+              class="pledge-expanded"
+              aria-hidden="true"
+              aria-expanded="false"
+              aria-labelledby="black-edition"
+              data-modal-pledge-expanded
+            >
+              <label for="black-edition-pledge">Enter your pledge</label>
+              <div class="pledge-expanded__wrapper">
+                <input
+                  type="number"
+                  name="black-edition-pledge"
+                  id="black-edition-pledge"
+                  value="75"
+                  min="75"
+                />
+                <button type="submit" class="btn btn--primary btn--short" data-btn-submit>
+                  Continue
+                </button>
+              </div>
+            </div>
+          </form>
+
+          <form class="modal-pledge-container" action="#" data-modal-active>
+            <div class="pledge">
+              <input
+                class="pledge__input"
+                type="checkbox"
+                name="mahogany"
+                id="mahogany"
+                data-modal-pledge
+                required
+              />
+              <div>
+                <div class="pledge__wrapper">
+                  <div class="pledge__wrapper__inner">
+                    <label class="pledge__label" for="mahogany">Mahogany Special Edition</label>
+                    <p class="pledge__accent-text">Pledge $200 or more</p>
+                  </div>
+                  <span class="pledge__quantity"><em data-progress-value="0"></em>left</span>
+                </div>
+                <p class="pledge__text">
+                  You get two Special Edition Mahogany stands, a Backer T-Shirt, and a personal
+                  thank you. You’ll be added to our Backer member list. Shipping is included.
+                </p>
+              </div>
+            </div>
+
+            <div
+              class="pledge-expanded"
+              aria-hidden="true"
+              aria-expanded="false"
+              aria-labelledby="mahogany"
+              data-modal-pledge-expanded
+            >
+              <label for="mahogany-pledge">Enter your pledge</label>
+              <div class="pledge-expanded__wrapper">
+                <input
+                  type="number"
+                  name="mahogany-pledge"
+                  id="mahogany-pledge"
+                  value="200"
+                  min="200"
+                />
+                <button type="submit" class="btn btn--primary btn--short" data-btn-submit>
+                  Continue
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </section>
+
+      <section class="modal hide" aria-hidden="true" data-confirmation>
+        <div class="modal__container confirmation-container">
+          <svg
+            width="64"
+            height="64"
+            xmlns="http://www.w3.org/2000/svg"
+            aria-label="completion mark"
+          >
+            <g fill="none" fill-rule="evenodd">
+              <circle fill="#3CB3AB" cx="32" cy="32" r="32" />
+              <path stroke="#FFF" stroke-width="5" d="M20 31.86L28.093 40 44 24" />
+            </g>
+          </svg>
+          <h2 class="confirmation-container__header">Thanks for your support!</h2>
+          <p class="confirmation-container__text">
+            Your pledge brings us one step closer to sharing Mastercraft Bamboo Monitor Riser
+            worldwide. You will get an email once our campaign is completed.
+          </p>
+          <button class="btn btn--primary" data-btn-confirmation>Got it!</button>
         </div>
       </section>
     </main>
