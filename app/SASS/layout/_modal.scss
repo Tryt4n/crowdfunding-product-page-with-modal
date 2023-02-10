@@ -84,8 +84,13 @@
         color: c.$moderate-cyan;
       }
     }
-    & .disabled .pledge__label:is(:focus, :hover) {
-      color: c.$black;
+
+    &__label.disabled {
+      opacity: 1;
+      cursor: default;
+      &:is(:hover, :focus) {
+        color: c.$black;
+      }
     }
 
     &__accent-text {
@@ -108,6 +113,7 @@
       border-color: c.$moderate-cyan;
     }
     &__input:is(:disabled:focus, :disabled:hover) {
+      cursor: auto;
       border-color: inherit;
     }
 
@@ -148,6 +154,7 @@
     transition: v.$main-transition;
 
     & .pledge {
+      border: none;
       border-bottom: func.rem(1) solid c.$nav-item-border;
       border-bottom-left-radius: 0;
       border-bottom-right-radius: 0;
@@ -220,10 +227,7 @@
       gap: v.$element-spacing-mobile;
 
       &__input {
-        position: absolute;
-        top: 0;
-        left: 0;
-        translate: v.$element-spacing-mobile v.$element-spacing-mobile;
+        min-width: 25px;
       }
 
       &__wrapper {
@@ -231,7 +235,6 @@
         &__inner {
           @include flex(column, flex-start, flex-start);
           gap: 0.25rem;
-          padding-left: 3rem;
           translate: 0 -0.5rem;
         }
         .mobile {
@@ -249,6 +252,7 @@
       &__text {
         margin-top: v.$element-spacing-mobile 0;
         margin-bottom: calc(v.$element-spacing-mobile * 2);
+        translate: calc((v.$element-spacing-mobile + func.rem(25)) * -1);
 
         &.mobile {
           margin-top: calc(v.$element-spacing-mobile + 1rem);

@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="../dist/style.css" />
+    <link rel="stylesheet" href="dist/style.css" />
     <script src="scripts/script.js" type="module"></script>
     <title>Crowdfunding product page</title>
   </head>
@@ -26,7 +26,7 @@
         </svg>
 
         <button id="btn-mobile-menu" class="btn hamburger-btn" data-navbar-btn>
-          <img src="./images/icon-hamburger.svg" alt="Open menu button" data-button-img />
+          <img src="images/icon-hamburger.svg" alt="Open menu button" data-button-img />
         </button>
 
         <ul class="navbar__list" data-menu-list-item>
@@ -72,7 +72,7 @@
           <div class="riser-header__btn-wrap">
             <button class="btn btn--primary" data-btn-open-modal>Back this project</button>
             <button class="btn btn--bookmark" aria-label="Mark as bookmarked" data-bookmark>
-              <img src="./images/icon-bookmark.svg" alt="Bookmark icon" data-bookmark-icon />
+              <img src="images/icon-bookmark.svg" alt="Bookmark icon" data-bookmark-icon />
             </button>
           </div>
         </div>
@@ -95,7 +95,7 @@
             </div>
           </div>
 
-          <div class="riser-goal__progress-bar" role="progressbar" title="fsafas">
+          <div class="riser-goal__progress-bar" role="progressbar">
             <div class="riser-goal__progress-bar--complete" data-progress-bar></div>
             <div class="riser-goal__progress-bar--incomplete"></div>
           </div>
@@ -124,10 +124,8 @@
               promotional campaign, and you’ll be added to a special Backer member list.
             </p>
             <div class="select-wrap">
-              <span class="select-wrap__quantity"><em data-progress-value="101"></em>left</span>
-              <button class="btn btn--primary" data-btn-open-modal="bamboo-stand">
-                Select Reward
-              </button>
+              <span class="select-wrap__quantity"><em data-pledge-value="101"></em>left</span>
+              <button class="btn btn--primary" data-btn-open-modal>Select Reward</button>
             </div>
           </div>
 
@@ -141,10 +139,8 @@
               added to our Backer member list. Shipping is included.
             </p>
             <div class="select-wrap">
-              <span class="select-wrap__quantity"><em data-progress-value="64"></em>left</span>
-              <button class="btn btn--primary" data-btn-open-modal="black-edition-stand">
-                Select Reward
-              </button>
+              <span class="select-wrap__quantity"><em data-pledge-value="64"></em>left</span>
+              <button class="btn btn--primary" data-btn-open-modal>Select Reward</button>
             </div>
           </div>
 
@@ -158,10 +154,8 @@
               you. You’ll be added to our Backer member list. Shipping is included.
             </p>
             <div class="select-wrap">
-              <span class="select-wrap__quantity"><em data-progress-value="0"></em>left</span>
-              <button class="btn btn--primary" data-btn-open-modal="mahogany-special-edition">
-                Select Reward
-              </button>
+              <span class="select-wrap__quantity"><em data-pledge-value="0"></em>left</span>
+              <button class="btn btn--primary" data-btn-open-modal>Select Reward</button>
             </div>
           </div>
         </div>
@@ -170,7 +164,7 @@
       <section class="modal hide" aria-hidden="true" data-modal>
         <div class="modal__container">
           <button class="btn close-btn" data-modal-close-btn>
-            <img src="./images/icon-close-modal.svg" alt="Close button" data-modal-button-img />
+            <img src="images/icon-close-modal.svg" alt="Close button" data-modal-button-img />
           </button>
           <h2 class="modal__header">Back this project</h2>
           <p class="modal__subheader">
@@ -239,7 +233,7 @@
                     <label class="pledge__label" for="bamboo">Bamboo Stand</label>
                     <p class="pledge__accent-text">Pledge $25 or more</p>
                   </div>
-                  <span class="pledge__quantity"><em data-progress-value="101"></em>left</span>
+                  <span class="pledge__quantity"><em data-modal-pledge-value="101"></em>left</span>
                 </div>
                 <p class="pledge__text">
                   You get an ergonomic stand made of natural bamboo. You've helped us launch our
@@ -281,7 +275,7 @@
                     <label class="pledge__label" for="black-edition">Black Edition Stand</label>
                     <p class="pledge__accent-text">Pledge $75 or more</p>
                   </div>
-                  <span class="pledge__quantity"><em data-progress-value="64"></em>left</span>
+                  <span class="pledge__quantity"><em data-modal-pledge-value="64"></em>left</span>
                 </div>
                 <p class="pledge__text">
                   You get a Black Special Edition computer stand and a personal thank you. You’ll be
@@ -329,7 +323,7 @@
                     <label class="pledge__label" for="mahogany">Mahogany Special Edition</label>
                     <p class="pledge__accent-text">Pledge $200 or more</p>
                   </div>
-                  <span class="pledge__quantity"><em data-progress-value="0"></em>left</span>
+                  <span class="pledge__quantity"><em data-modal-pledge-value="0"></em>left</span>
                 </div>
                 <p class="pledge__text">
                   You get two Special Edition Mahogany stands, a Backer T-Shirt, and a personal

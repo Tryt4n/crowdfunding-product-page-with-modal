@@ -101,11 +101,6 @@ input[type=checkbox] {
   cursor: pointer;
   transition: 300ms ease-in-out;
 }
-@media (width < 768px) {
-  input[type=checkbox] {
-    width: 1.5625rem;
-  }
-}
 input[type=checkbox]::before {
   position: absolute;
   content: "";
@@ -273,7 +268,11 @@ html::-webkit-scrollbar-track,
 .modal .pledge__label:is(:focus, :hover) {
   color: hsl(176deg, 50%, 47%);
 }
-.modal .pledge .disabled .pledge__label:is(:focus, :hover) {
+.modal .pledge__label.disabled {
+  opacity: 1;
+  cursor: default;
+}
+.modal .pledge__label.disabled:is(:hover, :focus) {
   color: hsl(0deg, 0%, 0%);
 }
 .modal .pledge__accent-text {
@@ -297,6 +296,7 @@ html::-webkit-scrollbar-track,
   border-color: hsl(176deg, 50%, 47%);
 }
 .modal .pledge__input:is(:disabled:focus, :disabled:hover) {
+  cursor: auto;
   border-color: inherit;
 }
 .modal .pledge__text {
@@ -337,6 +337,7 @@ html::-webkit-scrollbar-track,
   transition: 300ms ease-in-out;
 }
 .modal .active .pledge {
+  border: none;
   border-bottom: 0.0625rem solid hsla(0deg, 0%, 60%, 0.3);
   border-bottom-left-radius: 0;
   border-bottom-right-radius: 0;
@@ -402,10 +403,7 @@ html::-webkit-scrollbar-track,
     gap: 1rem;
   }
   .modal .pledge__input {
-    position: absolute;
-    top: 0;
-    left: 0;
-    translate: 1rem 1rem;
+    min-width: 25px;
   }
   .modal .pledge__wrapper {
     display: flex;
@@ -419,7 +417,6 @@ html::-webkit-scrollbar-track,
     justify-content: flex-start;
     align-items: flex-start;
     gap: 0.25rem;
-    padding-left: 3rem;
     translate: 0 -0.5rem;
   }
   .modal .pledge__wrapper .mobile {
@@ -434,6 +431,7 @@ html::-webkit-scrollbar-track,
   .modal .pledge__text {
     margin-top: 1rem 0;
     margin-bottom: 2rem;
+    translate: calc((1rem + 1.5625rem) * -1);
   }
   .modal .pledge__text.mobile {
     margin-top: 2rem;
@@ -492,10 +490,6 @@ html::-webkit-scrollbar-track,
     opacity: 0;
   }
 }
-.scroll {
-  overflow-y: hidden;
-}
-
 .background-opaque {
   position: fixed;
   inset: 0;
@@ -583,6 +577,18 @@ html::-webkit-scrollbar-track,
     opacity: 1;
   }
 }
+@keyframes hideMenuList {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+.scroll {
+  overflow-y: hidden;
+}
+
 body {
   width: 100%;
   height: 100vh;
@@ -668,6 +674,7 @@ body {
   z-index: -1;
   font-weight: bold;
   color: hsl(0deg, 0%, 48%);
+  transition: 300ms ease-in-out;
 }
 @media (width < 768px) {
   .riser-header__btn-wrap .btn--bookmark::after {
@@ -816,5 +823,21 @@ body {
     justify-content: flex-start;
     align-items: flex-start;
     gap: 2rem;
+  }
+}
+@keyframes showBookmark {
+  from {
+    opacity: 0.5;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes hideBookmark {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0.5;
   }
 }/*# sourceMappingURL=style.css.map */

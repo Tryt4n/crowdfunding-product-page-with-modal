@@ -52,6 +52,7 @@ function showModal() {
     btnOpen.addEventListener("click", () => {
       modal.classList.remove("hide");
       modal.setAttribute("aria-hidden", false);
+      document.querySelector("body").classList.add("scroll");
     });
   });
 }
@@ -59,6 +60,7 @@ function showModal() {
 function closeModal() {
   btnCloseModal.addEventListener("click", () => {
     close(modal);
+    document.querySelector("body").classList.remove("scroll");
   });
 }
 
@@ -80,6 +82,7 @@ function submitModal() {
 function closeConfirmation() {
   btnConfirmation.addEventListener("click", () => {
     close(confirmation);
+    document.querySelector("body").classList.remove("scroll");
   });
 }
 
