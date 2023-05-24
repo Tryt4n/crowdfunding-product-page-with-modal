@@ -1,5 +1,7 @@
 # Frontend Mentor - Crowdfunding product page
 
+[Link to the page](https://crowdfunding-product-pagee.netlify.app/app/)
+
 ![Design preview for the Crowdfunding product page coding challenge](./design/desktop-preview.jpg)
 
 ## Welcome! 👋
